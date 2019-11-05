@@ -16,7 +16,7 @@ export const UNCHECK_TASK = "UNCHECK_TASK";
 
 export interface AddTaskAction {
   type: typeof ADD_TASK;
-  task: Task[];
+  task: Task;
 }
 
 export interface EditTaskAction {
@@ -26,7 +26,7 @@ export interface EditTaskAction {
 
 export interface DeleteTaskAction {
   type: typeof DELETE_TASK;
-  task: Task[];
+  tasks: Task[];
 }
 
 export interface CheckOffTaskAction {
