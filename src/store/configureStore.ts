@@ -1,12 +1,11 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, Store } from "redux";
 import thunk from "redux-thunk";
-import tasksReducer from "../reducers/index";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { IStoreState as State } from '../reducers/state';
+import Reducers from "../reducers/index";
 
-export const rootReducer = combineReducers({
-  tasks: tasksReducer
-});
-
-export type AppState = ReturnType<typeof rootReducer>
-
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+export function configureStore(initialState?: State): Store<State> {
+  let middleware = composeWithDevTools(applyMiddleware(thunk));
+  const store = createStore(Reducers, initialState, middleware);
+  return store;
+}
