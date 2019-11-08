@@ -4,14 +4,12 @@ import { Provider } from "react-redux";
 import { InitialState } from "./reducers/state";
 // import { IStoreState as State } from "./reducers/state";
 import { configureStore } from "./store/configureStore";
-import AppPage from './pages/AppPage';
+import TodoComponent from "./components/TodoComponent";
 
 const store = configureStore(InitialState);
 render(
   <Provider store={store}>
-    <div>
-      <AppPage/>
-    </div>
+    <TodoComponent/>
   </Provider>,
   document.getElementById("root")
 );
