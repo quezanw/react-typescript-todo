@@ -1,12 +1,12 @@
-import { Task } from "../types/Task";
+import { ITask } from "../types/Task";
 import { ActionTypes } from "../types/actions";
 import { createAction } from "redux-actions";
 
-export const addTask = createAction<{ task: Task }>(ActionTypes.ADD_TASK)
-export const editTask = createAction<{ task: Task }>(ActionTypes.EDIT_TASK)
+export const addTask = createAction<{ task: ITask }>(ActionTypes.ADD_TASK)
+export const editTask = createAction<{ task: ITask }>(ActionTypes.EDIT_TASK)
 export const deleteTask = createAction<{ id: string }>(ActionTypes.DELETE_TASK)
-export const checkOffTask = createAction<{ task: Task }>(ActionTypes.CHECK_OFF_TASK)
-export const uncheckTask = createAction<{ task: Task }>(ActionTypes.UNCHECK_TASK)
+export const changeStatus = createAction<{ task: ITask }>(ActionTypes.CHANGE_STATUS)
+
 
 
 // export const addTask = ( task: Task ): AppActions => ({ 

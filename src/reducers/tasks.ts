@@ -13,10 +13,7 @@ export default handleActions({
   [ActionTypes.DELETE_TASK]: (state: ITasksState, action: any) => {
     return { items: state.items.filter(item => item.id !== action.payload) }
   },
-  [ActionTypes.CHECK_OFF_TASK]: (state: ITasksState, action: any) => {
-    return { items: changeStatus(state, action.payload) }
-  },
-  [ActionTypes.UNCHECK_TASK]: (state: ITasksState, action: any) => {
+  [ActionTypes.CHANGE_STATUS]: (state: ITasksState, action: any) => {
     return { items: changeStatus(state, action.payload) }
   }
 }, InitialTasksState);

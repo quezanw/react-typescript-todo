@@ -1,0 +1,19 @@
+.todo-add-wrapper {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+
+  input {
+    flex-grow: 1;
+  }
+
+  .btn-save {
+    width: 20%;
+    // flex-grow: 1;
+  }
+}
+
+.icon-save {
+  font-size: 1.25rem;
+  margin-left: .5rem;
+}

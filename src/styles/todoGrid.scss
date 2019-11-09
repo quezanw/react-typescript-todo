@@ -1,0 +1,10 @@
+.todo-grid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .container {
+    border: 3px solid orange;
+    padding: 2rem;
+  }
+}

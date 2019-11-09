@@ -5,6 +5,9 @@ import { InitialState } from "./reducers/state";
 // import { IStoreState as State } from "./reducers/state";
 import { configureStore } from "./store/configureStore";
 import TodoComponent from "./components/TodoComponent";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { initializeIcons } from '@uifabric/icons';
+initializeIcons();
 
 const store = configureStore(InitialState);
 render(
