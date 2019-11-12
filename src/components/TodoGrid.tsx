@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from "react-redux";
 import { Task } from "../types/Task";
 import { IStoreState } from "../reducers/state";
-import { Container, Row, Col } from "react-bootstrap"; 
+import { Container } from "react-bootstrap"; 
 import TodoItem from "./TodoItem";
 import TodoAddTask from "./TodoAddTask";
 import "../styles/todoGrid.scss";
@@ -15,7 +15,7 @@ class TodoGrid extends React.Component<IProps, IStoreState> {
 
   public renderListItems = (): JSX.Element => {
     return this.props.items.map((item: Task) => (
-      <TodoItem item={item}/>
+      <TodoItem item={item} key={item.id} />
     ));
   }
 

@@ -1,5 +1,4 @@
-import { ITask, Task } from '../types/Task';
-import tasks from './tasks';
+import { Task } from '../types/Task';
 const INITIAL_STATE = [
   new Task("11232", "Wash and vacuum car"), 
   new Task("12352", "Take out trash and recycle"), 

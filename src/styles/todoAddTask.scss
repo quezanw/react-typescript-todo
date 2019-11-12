@@ -3,8 +3,12 @@
   display: flex;
   flex-flow: row nowrap;
 
-  input {
+  form {
     flex-grow: 1;
+
+    input {
+      width: 100%;
+    }
   }
 
   .btn-save {

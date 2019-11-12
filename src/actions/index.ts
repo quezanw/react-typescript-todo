@@ -3,9 +3,9 @@ import { ActionTypes } from "../types/actions";
 import { createAction } from "redux-actions";
 
 export const addTask = createAction<{ task: ITask }>(ActionTypes.ADD_TASK)
-export const editTask = createAction<{ task: ITask }>(ActionTypes.EDIT_TASK)
+export const editTask = createAction<{ id: string, title: string }>(ActionTypes.EDIT_TASK)
 export const deleteTask = createAction<{ id: string }>(ActionTypes.DELETE_TASK)
-export const changeStatus = createAction<{ task: ITask }>(ActionTypes.CHANGE_STATUS)
+export const changeStatus = createAction<{ id: string }>(ActionTypes.CHANGE_STATUS)
 
 
 
