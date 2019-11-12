@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Task } from "../types/Task";
 import { Row, Col } from "react-bootstrap"; 
 import "../styles/todoItem.scss";
-import { changeStatus, editTask } from "../actions/index"
+import { changeStatus, editTask, deleteTask } from "../actions/index"
 
 
 
@@ -24,11 +24,17 @@ class TodoItem extends React.Component<any, any> {
     
   }
 
+  public handleDeleteTask = (id: string): void => {
+    this.props.deleteTask(id);
+  }
+
   public render(): JSX.Element {
     let { title, id, completed } = this.props.item;
+    console.log(completed)
     return (
       <Row>
-        <Col lg="10" md="10" sm="10">{title}</Col>
+        <Col onClick={() => this.handleDeleteTask(id)} lg="1" md="1" sm="1">delete</Col>
+        <Col lg="9" md="9" sm="9">{title}</Col>
         <Col onClick={() => this.handleChangeStatus(id)} lg="2" md="2" sm="2">
           {completed ? "done" : "not done" }
         </Col>
@@ -37,4 +43,4 @@ class TodoItem extends React.Component<any, any> {
   }
 }
 
-export default connect(null, { changeStatus, editTask })(TodoItem);
+export default connect(null, { changeStatus, editTask, deleteTask })(TodoItem);

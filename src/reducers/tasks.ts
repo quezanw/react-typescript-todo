@@ -20,14 +20,18 @@ export default handleActions({
 
 const editTitle = (state: ITasksState, title: string, id: string) => {
   return state.items.map((item: Task) => {
-    if(item.id === id) item.title = title;
-    return item;
+    if(item.id === id) {
+      return new Task(id, title, item.completed)
+    }
+    return new Task(item.id, item.title, item.completed);
   })
 }
 
-const changeStatus = (state: ITasksState, id: string) => {
+const changeStatus = (state: ITasksState, id: string): Task[] => {
   return state.items.map((item: Task) => {
-    if(item.id === id) item.completed = !item.completed;
-    return item;
-  });
+    if(item.id === id) {
+      return new Task(id, item.title, !item.completed)
+    }
+    return new Task(item.id, item.title, item.completed);
+  })
 }
