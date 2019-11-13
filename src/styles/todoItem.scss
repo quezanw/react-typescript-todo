@@ -1,3 +1,72 @@
-.row {
-  border: 1px solid black;
+.todo-item {
+  margin-bottom: .5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: white;
+
+  .title-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .item-title {
+    margin: 0;
+    cursor: pointer;
+
+    del {
+      color: rgb(167, 167, 167);
+    }
+  }
+
+  .icon {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .title-edit > input {
+    width: 100%;
+  }
 }
+
+.checkmark, .empty-checkmark, .btn-delete {
+  font-size: 1.75rem;
+}
+
+.empty-checkmark {
+  color: red;
+  transition: all .5s;
+
+  &:hover {
+    color: darken(red, 10%);
+  }
+}
+
+.checkmark {
+  color: green;
+  transition: all .5s;
+
+  &:hover {
+    color: darken(green, 10%);
+  }
+}
+
+.btn-delete {
+  color: red;
+  transition: all .5s;
+
+  &:hover {
+    color: rgb(194, 0, 0);
+  }
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+  .todo-item {
+    flex-flow: row nowrap;
+  }
+  .checkmark, .empty-checkmark, .btn-delete {
+    font-size: 1rem;
+  }
+}
+  

@@ -15,11 +15,6 @@ class TodoAddTask extends React.Component<any, IState> {
     input: ""
   }
 
-
-  public createTask = (): void => {
-
-  }
-
   public handleChange = (e: any): void => {
     this.setState({ input: e.target.value});
   }

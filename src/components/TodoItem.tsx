@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Task } from "../types/Task";
 import { Row, Col } from "react-bootstrap"; 
 import "../styles/todoItem.scss";
-import { changeStatus, editTask, deleteTask } from "../actions/index"
+import { changeStatus, editTask, deleteTask } from "../actions/index";
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
 
 interface IProps {
   item: Task;
@@ -30,29 +31,42 @@ class TodoItem extends React.Component<any, any> {
   public handleDeleteTask = (id: string): void => this.props.deleteTask(id);
 
   public renderTitle = (): JSX.Element => {
-    let { title, editActive } = this.state
+    let { title, editActive } = this.state;
+    let { completed } = this.props.item;
     if(editActive) {
       return (
-        <form onSubmit={this.handleEditTask}>
+        <form  className="title-edit" onSubmit={this.handleEditTask}>
           <input onChange={this.handleOnChange} value={this.state.title} type="text"/>
         </form>
       );
     }
-    return <p onClick={() => this.setState({ editActive: true })}>{title}</p>
+    return (
+      <p className="item-title" onClick={() => this.setState({ editActive: true })}>
+        {completed ? <del>{title}</del> : title}
+      </p>
+    )
+  }
+
+  public renderCheckMark = (completed: boolean): JSX.Element => {
+    return (
+      completed ? 
+        <Icon className="checkmark" iconName="SkypeCircleCheck"/> :
+        <Icon className="empty-checkmark" iconName="CircleRing"/>
+      )
   }
 
   public render(): JSX.Element {
     let { id, completed } = this.props.item;
     return (
-      <Row>
-        <Col onClick={() => this.handleDeleteTask(id)} lg="1" md="1" sm="1">
-          delete
+      <Row className="todo-item" >
+        <Col className="icon" onClick={() => this.handleDeleteTask(id)} lg="1" md="1" sm="1">
+          <Icon className="btn-delete" iconName="Delete"/>
         </Col>
-        <Col lg="9" md="9" sm="9">
+        <Col className="title-wrapper" lg="10" md="10" sm="6">
           {this.renderTitle()}
         </Col>
-        <Col onClick={() => this.handleChangeStatus(id)} lg="2" md="2" sm="2">
-          {completed ? "done" : "not done" }
+        <Col className="icon" onClick={() => this.handleChangeStatus(id)} lg="1" md="1" sm="1">
+          {this.renderCheckMark(completed)}
         </Col>
       </Row>
     );
