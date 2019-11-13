@@ -15,12 +15,6 @@ interface IProps {
 
 class TodoGrid extends React.Component<IProps, IStoreState> {
 
-  public renderListItems = (): JSX.Element => {
-    return this.props.items.map((item: Task) => (
-      <TodoItem item={item} key={item.id} />
-    ));
-  }
-
   public renderTimeDate = (): JSX.Element => {
     let date = moment().format('dddd, MMM, DD, YYYY').split(',');
     return (
@@ -43,12 +37,14 @@ class TodoGrid extends React.Component<IProps, IStoreState> {
   }
 
   public render() {
+    let { items } = this.props;
+    const listItems = items.map((item: Task) => <TodoItem item={item} key={item.id}/>)
     return (
       <div className="todo-grid">
         <Container>
           {this.renderTimeDate()}
           <TodoAddTask/>
-          {this.renderListItems()}
+          {listItems}
         </Container>
       </div>
     );

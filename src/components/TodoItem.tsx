@@ -3,16 +3,22 @@ import { connect } from "react-redux";
 import { Task } from "../types/Task";
 import { Row, Col } from "react-bootstrap"; 
 import "../styles/todoItem.scss";
-import { changeStatus, editTask, deleteTask } from "../actions/index";
+import * as actions from "../actions/index";
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
+
+interface IState {
+  title: string;
+  editActive: boolean;
+}
 
 interface IProps {
   item: Task;
   changeStatus: (id: string) => void;
   editTask: (title: string, id: string) => void;
+  deleteTask: (id: string) => void;
 }
 
-class TodoItem extends React.Component<any, any> {
+class TodoItem extends React.Component<IProps, IState> {
   state = {
     title: this.props.item.title,
     editActive: false
@@ -20,9 +26,9 @@ class TodoItem extends React.Component<any, any> {
 
   public handleChangeStatus = (id: string): void => this.props.changeStatus(id);
 
-  public handleEditTask = (e: any): void => {
+  public handleEditTask = (e: any, id: string): void => {
     e.preventDefault();
-    this.props.editTask(this.state.title);
+    this.props.editTask(this.state.title, id);
     this.setState({ editActive: false });
   }
 
@@ -32,10 +38,10 @@ class TodoItem extends React.Component<any, any> {
 
   public renderTitle = (): JSX.Element => {
     let { title, editActive } = this.state;
-    let { completed } = this.props.item;
+    let { completed, id } = this.props.item;
     if(editActive) {
       return (
-        <form  className="title-edit" onSubmit={this.handleEditTask}>
+        <form  className="title-edit" onSubmit={e => this.handleEditTask(e, id)}>
           <input onChange={this.handleOnChange} value={this.state.title} type="text"/>
         </form>
       );
@@ -73,4 +79,10 @@ class TodoItem extends React.Component<any, any> {
   }
 }
 
-export default connect(null, { changeStatus, editTask, deleteTask })(TodoItem);
+const mapDispatchToProps = (dispatch: any) => ({
+  changeStatus: (id: string) => dispatch(actions.changeStatus({ id })),
+  deleteTask: (id: string) => dispatch(actions.deleteTask({ id })),
+  editTask: (title: string, id: string) => dispatch(actions.editTask({ title, id}))
+});
+
+export default connect(null, mapDispatchToProps)(TodoItem);

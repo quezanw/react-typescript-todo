@@ -1,15 +1,14 @@
 import * as React from 'react';
 import "../styles/todoHeader.scss";
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
 
-class TodoHeader extends React.Component<any, any> {
-
-  public render() {
-    return (
-      <section className="todo-header">
-        <h1>Todo List</h1>
-      </section>
-    );
-  }
+const TodoHeader = (): JSX.Element => {
+  return (
+    <section className="todo-header">
+      <h1>Todo List</h1>
+      <Icon className="checklist-icon" iconName="CheckList"/>
+    </section>
+  );
 }
 
 export default TodoHeader;

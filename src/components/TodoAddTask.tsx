@@ -1,39 +1,31 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 import { Row } from "react-bootstrap"; 
+import * as actions from "../actions/index";
 import "../styles/todoAddTask.scss";
-import { addTask } from "../actions/index";
 import { PrimaryButton } from 'office-ui-fabric-react';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Task } from "../types/Task";
+import { generateString } from "../helpers/utils";
 
 interface IState {
   input: string;
 }
-class TodoAddTask extends React.Component<any, IState> {
-  state = {
-    input: ""
-  }
+
+interface IProps {
+  addTask: (task: Task) => void;
+}
+
+class TodoAddTask extends React.Component<IProps, IState> {
+  state = { input: "" };
 
   public handleChange = (e: any): void => {
     this.setState({ input: e.target.value});
   }
 
-  public generateString = (): string => {
-    let alphabet = "abcdefghijklmnopqrstuvxyz";
-    let nums = "0123456789";
-    let result = "";
-    for(let i = 0; i < 10; i++) {
-      let rand1 = Math.floor(Math.random() * 26)
-      let rand2 = Math.floor(Math.random() * 8)
-      result += alphabet[rand1] + nums[rand2];
-    }
-    return result;
-  }
-
   public handleSubmit = (e: any): void => {
     e.preventDefault();
-    let task = new Task(this.generateString(), this.state.input);
+    let task = new Task(generateString(), this.state.input);
     this.props.addTask(task);
     this.setState({input: ""});
   }
@@ -54,4 +46,8 @@ class TodoAddTask extends React.Component<any, IState> {
   }
 }
 
-export default connect(null, { addTask })(TodoAddTask);
+const mapDispatchToProps = (dispatch: any) => ({
+  addTask: (task: Task) => dispatch(actions.addTask({ task }))
+})
+
+export default connect(null, mapDispatchToProps)(TodoAddTask);

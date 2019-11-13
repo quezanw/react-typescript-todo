@@ -5,16 +5,16 @@ import { Task } from "../types/Task";
 
 export default handleActions({
   [ActionTypes.ADD_TASK]: (state: ITasksState, action: any) => {
-    return { items: [...state.items, action.payload] }
+    return { items: [...state.items, action.payload.task] }
   },
   [ActionTypes.EDIT_TASK]: (state: ITasksState, action: any) => {
-    return { items:  editTitle(state, action.title, action.id) }
+    return { items:  editTitle(state, action.payload.title, action.payload.id) }
   },
   [ActionTypes.DELETE_TASK]: (state: ITasksState, action: any) => {
-    return { items: state.items.filter(item => item.id !== action.payload) }
+    return { items: state.items.filter(item => item.id !== action.payload.id) }
   },
   [ActionTypes.CHANGE_STATUS]: (state: ITasksState, action: any) => {
-    return { items: changeStatus(state, action.payload) }
+    return { items: changeStatus(state, action.payload.id) }
   }
 }, InitialTasksState);
 
