@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
+
+
 .todo-item {
   margin-bottom: .5rem;
   padding: 1rem;
@@ -11,6 +14,9 @@
 
   .item-title {
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
     cursor: pointer;
 
     del {
