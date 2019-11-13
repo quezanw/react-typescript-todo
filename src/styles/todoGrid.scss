@@ -1,19 +1,61 @@
+@import "../styles/variables.scss";
+
 .todo-grid {
   width: 100%;
   display: flex;
   justify-content: center;
 
   .container {
+    width: 50%;
     margin-top: 1rem;
-    padding: 5rem;
+    padding: 2rem 5rem;
     border-radius: 5px;
     background-color: #f3f3f3;
+  }
+
+  .date-container {
+
+    .day {
+      display: flex;
+      align-items: center;
+
+      h3 {
+        font-family: $font;
+        font-weight: 600;
+      }
+    }
+
+    .date {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-flow: row nowrap;
+
+      p {
+        font-family: $font;
+      }
+
+      .date-day {
+        font-size: 33pt;
+        font-weight: 600;
+      }
+
+      .date-monthyear {
+        font-size: 10pt;
+        margin-left: 5px;
+      }
+    }
   }
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-  .todo-grid > .container {
+  .todo-grid>.container {
     padding: 2rem;
   }
 }
-  
+
+@media only screen and (max-device-width : 1020px) {
+  .todo-grid>.container {
+    width: 100%;
+  }
+}

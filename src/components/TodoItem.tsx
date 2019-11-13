@@ -62,7 +62,7 @@ class TodoItem extends React.Component<any, any> {
         <Col className="icon" onClick={() => this.handleDeleteTask(id)} lg="1" md="1" sm="1">
           <Icon className="btn-delete" iconName="Delete"/>
         </Col>
-        <Col className="title-wrapper" lg="10" md="10" sm="6">
+        <Col className="title-wrapper" lg="10" md="10" sm="10">
           {this.renderTitle()}
         </Col>
         <Col className="icon" onClick={() => this.handleChangeStatus(id)} lg="1" md="1" sm="1">

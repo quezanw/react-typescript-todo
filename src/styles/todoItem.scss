@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap');
-
+@import "../styles/variables.scss";
 
 .todo-item {
   margin-bottom: .5rem;
   padding: 1rem;
   border-radius: 5px;
-  background-color: white;
+  background-color: $primary-white;
 
   .title-wrapper {
     display: flex;
@@ -14,13 +14,13 @@
 
   .item-title {
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font;
     font-size: 1rem;
     font-weight: 300;
     cursor: pointer;
 
     del {
-      color: rgb(167, 167, 167);
+      color: $gray;
     }
   }
 
@@ -30,49 +30,71 @@
     cursor: pointer;
   }
 
-  .title-edit > input {
+  .title-edit>input {
     width: 100%;
   }
 }
 
-.checkmark, .empty-checkmark, .btn-delete {
+.checkmark,
+.empty-checkmark,
+.btn-delete {
   font-size: 1.75rem;
 }
 
 .empty-checkmark {
-  color: red;
+  color: $primary-red;
   transition: all .5s;
 
   &:hover {
-    color: darken(red, 10%);
+    color: darken($primary-red, 10%);
   }
 }
 
 .checkmark {
-  color: green;
+  color: darken($primary-green, 20%);
   transition: all .5s;
 
   &:hover {
-    color: darken(green, 10%);
+    color: $primary-green;
   }
 }
 
 .btn-delete {
-  color: red;
+  color: $primary-red;
   transition: all .5s;
 
   &:hover {
-    color: rgb(194, 0, 0);
+    color: darken($primary-red, 10%);
   }
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and (min-device-width : 320px) and (max-device-width : 720px) {
 
   .todo-item {
     flex-flow: row nowrap;
+
+    .icon,
+    .title-wrapper {
+      width: auto;
+    }
+
+    .icon:last-child {
+      margin-left: auto;
+    }
   }
-  .checkmark, .empty-checkmark, .btn-delete {
+
+  .checkmark,
+  .empty-checkmark,
+  .btn-delete {
     font-size: 1rem;
   }
 }
-  
+
+@media only screen and (max-device-width : 480px) {
+
+  .todo-item {
+    .item-title {
+      font-size: 10pt;
+    }
+  }
+}
